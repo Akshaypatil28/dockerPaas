@@ -10,24 +10,12 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) ){
 		$ans="pages/c/coutput.php";
 		
 		require '../../Database Connection/db.php';
-		$date = new DateTime();
-		$date=date('d/m/Y H:i:s', $date->getTimestamp());
+		$date = date('d/m/Y H:i:s');
+		// $date=date('d/m/Y H:i:s', $date->getTimestamp());
+		echo $date;
 		$rollno = $_SESSION['rollno'];
-		$sql = "Insert into programs ('$rollno','$file','$data', $date)";
+		$sql = "Insert into programs Values('$rollno','$file','$data','$date')";
 		$result = mysqli_query($conn, $sql);
-		$num_rows = mysqli_num_rows($result);
-
-		if($num_rows == 0)
-		{
-				$_SESSION['message'] = "Program is Not inserted";
-				// header("location: error.php");
-		}
-
-		else
-		{
-							 header('location:./c11.php');
-		}
-
 		$links = $url.$ans;
 		$bbb="cccccccccc.php";
 		if(file_exists($file)) // check if file exits or not

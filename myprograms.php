@@ -29,7 +29,7 @@
             require('header.php');
         ?>
         <ul>
-            <li><a href="cprogram.php">C Programs</a></li>
+            <li><a href="showprograms.php?type=c">C Programs</a></li>
             <li><a href="cppprogram.php">C++ Programs</a></li>
             <li><a href="javaprogram.php">Java Programs</a></li>
         </ul>
