@@ -43,7 +43,7 @@
                                 <img src="./img/c.jpg" height=100px width=100px>
                                 <h3>C LANGUAGE</h3>
                                 <p>Code in your style using c</p>
-                                <form action="/pages/c/c11.php">
+                                <form action="./pages/c/c11.php">
                                     <button type="submit" class="button special">CLICK HERE AND START</button>
                                 </form>
                             </div>
