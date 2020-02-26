@@ -1,37 +1,26 @@
 <?php
 session_start();
 if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) ){
-	if (isset($_POST['save'])){// if click on save button
-		$f=$_POST["file"]; // here we get file name
-		$ext=$_POST["ext"]; // here for extension
-		$data=$_POST["output"];// for content
-		$file=$f.$ext; // concat file name with extension
-		$url = "//localhost:8080/project/";
-		$ans="pages/c/coutput.php";
-		echo $data;
-		require '../../Database Connection/db.php';
-		$date = date('d/m/Y H:i:s');
-		// $date=date('d/m/Y H:i:s', $date->getTimestamp());
-		echo $date;
-		$rollno = $_SESSION['rollno'];
-		$sql = "Insert into programs Values('$rollno','$file','$data','$date')";
-		$result = mysqli_query($conn, $sql);
-		$links = $url.$ans;
-		$bbb="cccccccccc.php";
-		if(file_exists($file)) // check if file exits or not
-		{
-			$fo=fopen($file,"w");
-					fwrite($fo,$data);// write data
-					echo " Your Data is Saved !";	// display msg}
-			// if yes display error mssg
-		}else
-		{
-												// if no create file 
-					$fo=fopen($file,"w");
-					fwrite($fo,$data);// write data
-					echo " Your Data is Saved !";	// display msg}
-		}
-	}
+    $name = $_GET['name'];
+    require 'Database Connection/db.php';
+    $index = strripos($name,".");
+    $ext = substr($name, $index+1); 
+    $nm = substr($name,0,$index);
+    $rollno = $_SESSION['rollno'];
+    $sql = "select program, submissiondate from programs where rollno = '$rollno' and name = '$name'";
+    $result = mysqli_query($conn, $sql);
+    $num_rows = mysqli_num_rows($result);
+    if($num_rows == 0)
+    {
+        $_SESSION['message']="no programs availble";
+    }
+
+    else
+    {    
+        $row = $result->fetch_assoc();
+    // echo $row['program'];
+
+    }
 ?>
 
 <html>
@@ -63,7 +52,7 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) ){
 		</style>
 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-		<link rel="stylesheet" href="../../css/style.css">
+		<link rel="stylesheet" href="css/style.css">
 
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -71,7 +60,9 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) ){
 	
 		<script>
 			function load_text(){
-				document.getElementById("output").value="write text here....."
+                var prg = document.getElementById("prg").value;
+                console.log(prg);
+				document.getElementById("output").value=prg;
 				
 			}
 			function bold_text(){
@@ -129,6 +120,7 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) ){
 						</nav>
 					</div>
 		</header>
+        <textarea name="prg" id="prg" cols="30" rows="10"  hidden><? echo $row['program'] ?></textarea>
 		<form id="form" method="POST"> 
 
 
@@ -168,19 +160,25 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) ){
 			</div>
 			<br>
 			<p align="center">
-				<input type="text" name="file" placeholder="filename">
-				<input type="text" name="ext" placeholder="extension">
+				<select name="file">
+					<option value="">Select File Name </option>
+					<option value=<? echo $nm ?> selected><? echo $nm ?></option> 
+				</select>
+				<select name="ext">
+					<option value="">Select Extension </option>
+					<option value=<? echo ".".$ext ?> selected><? echo $ext ?> </option>
+				</select>
 				<input type="submit" class="bnt btn-danger" value="Save" name="save">   
 				<input type="reset" class="bnt btn-danger" value="Clear">
 			</p> <br>
-			<p align="center">
+			<!-- <p align="center">
 				<a href='<?php echo $bbb; ?>' target='_blank'>
 					<input type="button" value="Compile">
 				</a>
 				<a href='<?php echo $links; ?>' target='_blank'>
 					<input type="button" value="Run">
 				</a> <br/>
-			</p>
+			</p> -->
 										
 		</form>
 	</body>

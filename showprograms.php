@@ -8,7 +8,7 @@
         require 'Database Connection/db.php';
 		
 		$rollno = $_SESSION['rollno'];
-		$sql = "select name, time from programs where rollno = '$rollno' and name REGEXP '$prg$'";
+		$sql = "select name, submissiondate from programs where rollno = '$rollno' and name regexp '$prg$'";
         $result = mysqli_query($conn, $sql);
         $num_rows = mysqli_num_rows($result);
         if($num_rows == 0)
@@ -42,9 +42,8 @@
     ?>
     <ul>
         <?php  while($User=$result->fetch_assoc()){
-
-            echo '<li>'.$User['name'].'</li>';
-}
+            echo '<a href="openeditor.php?name='.$User['name'].'"><li >'.$User['name'].'</li></a>';
+            }
 
 }?>       
         
