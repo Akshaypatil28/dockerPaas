@@ -7,27 +7,25 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) ){
 		$data=$_POST["output"];// for content
 		$file=$f.$ext; // concat file name with extension
 		$url = "//localhost:8080/project/";
+		$dummy="main.c"
 		$ans="pages/c/coutput.php";
-		echo $data;
 		require '../../Database Connection/db.php';
 		$date = date('d/m/Y H:i:s');
-		// $date=date('d/m/Y H:i:s', $date->getTimestamp());
-		echo $date;
 		$rollno = $_SESSION['rollno'];
 		$sql = "Insert into programs Values('$rollno','$file','$data','$date')";
 		$result = mysqli_query($conn, $sql);
 		$links = $url.$ans;
-		$bbb="cccccccccc.php";
-		if(file_exists($file)) // check if file exits or not
+		$bbb="c.php";
+		if(file_exists($dummy)) // check if file exits or not
 		{
-			$fo=fopen($file,"w");
+			$fo=fopen($dummy,"w");
 					fwrite($fo,$data);// write data
 					echo " Your Data is Saved !";	// display msg}
 			// if yes display error mssg
 		}else
 		{
 												// if no create file 
-					$fo=fopen($file,"w");
+					$fo=fopen($dummy,"w");
 					fwrite($fo,$data);// write data
 					echo " Your Data is Saved !";	// display msg}
 		}

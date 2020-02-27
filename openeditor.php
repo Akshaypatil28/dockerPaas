@@ -61,9 +61,7 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) ){
 		<script>
 			function load_text(){
                 var prg = document.getElementById("prg").value;
-                console.log(prg);
 				document.getElementById("output").value=prg;
-				
 			}
 			function bold_text(){
 				document.getElementById("output").style.fontWeight="bold";
@@ -171,14 +169,14 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) ){
 				<input type="submit" class="bnt btn-danger" value="Save" name="save">   
 				<input type="reset" class="bnt btn-danger" value="Clear">
 			</p> <br>
-			<!-- <p align="center">
-				<a href='<?php echo $bbb; ?>' target='_blank'>
+			<p align="center">
+				<a href='<?php echo $ext.".php"; ?>' target='_blank'>
 					<input type="button" value="Compile">
 				</a>
-				<a href='<?php echo $links; ?>' target='_blank'>
+				<a href='<?php echo $ext."output.php"; ?>' target='_blank'>
 					<input type="button" value="Run">
 				</a> <br/>
-			</p> -->
+			</p>
 										
 		</form>
 	</body>
