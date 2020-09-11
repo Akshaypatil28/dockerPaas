@@ -6,13 +6,13 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) ){
 		$ext=$_POST["ext"]; // here for extension
 		$data=$_POST["output"];// for content
 		$file=$f.$ext; // concat file name with extension
-		$url = "//localhost:8080/project/";
+		$url = "//localhost:8080/dockerPaas/";
 		$dummy="main.c"
 		$ans="pages/c/coutput.php";
 		require '../../Database Connection/db.php';
 		$date = date('d/m/Y H:i:s');
 		$rollno = $_SESSION['rollno'];
-		$sql = "Insert into programs Values('$rollno','$file','$data','$date')";
+		$sql = "Insert into programs Values('$rollno','$file','$data','$date', 3, 0)";
 		$result = mysqli_query($conn, $sql);
 		$links = $url.$ans;
 		$bbb="c.php";

@@ -1,5 +1,0 @@
-FROM python:3
-COPY . /usr/src/app
-MAINTAINER sam
-WORKDIR /usr/src/app
-CMD [ "python", "./main3.py" ]

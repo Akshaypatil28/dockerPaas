@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) )
+	if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) || $_SESSION['isTeacher'] )
 	{
         $userName = $_SESSION['fname']." ".$_SESSION['lname'];
     

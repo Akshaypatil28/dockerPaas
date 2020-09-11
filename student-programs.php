@@ -1,9 +1,9 @@
 <?php
 	session_start();
 
-	if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) )
+	if(isset($_SESSION['username']) AND isset($_SESSION['password']) )
 	{
-        $userName = $_SESSION['fname']." ".$_SESSION['lname'];
+        $_SESSION['rollno'] = $_GET['rollno'];
     
 ?>
     <!DOCTYPE HTML>
@@ -26,11 +26,11 @@
     <body>
 
         <?php 
-            require('header.php');
+            require('teacherheader.php');
         ?>
         <ul>
-            <li><a href="showprograms.php?type=c">C Programs</a></li>
-            <li><a href="showprograms.php?type=cpp">C++ Programs</a></li>
+            <li><a href="show-student-programs.php?type=c">C Programs</a></li>
+            <li><a href="show-student-programs.php?type=cpp">C++ Programs</a></li>
         </ul>
     </body>
     </html>
@@ -38,6 +38,6 @@
     }
 	else
 	{
-		header('location:./login.php');
+		header('location:./teacherlogin.php');
 	}
 ?>

@@ -35,24 +35,10 @@
             <h1>DockerPAAS: <span>Gives you a platform  <br />
 					</span></h1>
             <ul class="actions">
-                <li><a href="services.html" class="button alt">Get Started</a></li>
+                <li><a href="services.php" class="button alt">Get Started</a></li>
             </ul>
         </div>
     </section>
-
-    <!-- One -->
-    <!-- <section id="one">
-        <div class="inner">
-            <header>
-                <h2>Magna Etiam Lorem</h2>
-            </header>
-            <p>Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula. Integer adipiscin sem. Nullam quis massa sit amet nibh viverra malesuada. Nunc sem lacus, accumsan quis, faucibus non, congue vel, arcu,
-                erisque hendrerit tellus. Integer sagittis. Vivamus a mauris eget arcu gravida tristique. Nunc iaculis mi in ante.</p>
-            <ul class="actions">
-                <li><a href="#" class="button alt">Learn More</a></li>
-            </ul>
-        </div>
-    </section> -->
 
     <!-- Two -->
     <section id="two">
@@ -83,117 +69,10 @@
         </div>
     </section>
 
-    <section id="two">
-        <div class="inner">
-            <article>
-                <div class="content">
-                    <header>
-                        <h3>JAVA Programming</h3>
-                    </header>
-                    <div class="image fit">
-                        <img src="img/java.png" alt="" />
-                    </div>
-                    <p>This is Java programming language</p>
-                </div>
-            </article>
-            <article class="alt">
-                <div class="content">
-                    <header>
-                        <h3>php programming</h3>
-                    </header>
-                    <div class="image fit">
-                        <img src="img/php.jpg" alt="" />
-                    </div>
-                    <p>This is php programming language</p>
-                </div>
-            </article>
-
-        </div>
-    </section>
-    <section id="two">
-        <div class="inner">
-            <article>
-                <div class="content">
-                    <header>
-                        <h3>python Programming</h3>
-                    </header>
-                    <div class="image fit">
-                        <img src="img/python.png" alt="" />
-                    </div>
-                    <p>This is python programming language</p>
-                </div>
-            </article>
-        </div>
-    </section>
-    <!-- Three -->
-    <!-- <section id="three">
-        <div class="inner">
-            <article>
-                <div class="content">
-                    <span class="icon fa-laptop"></span>
-                    <header>
-                        <h3>Tempus Feugiat</h3>
-                    </header>
-                    <p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna lorem ullamcorper laoreet, lectus arcu.</p>
-                    <ul class="actions">
-                        <li><a href="#" class="button alt">Learn More</a></li>
-                    </ul>
-                </div>
-            </article>
-            <article>
-                <div class="content">
-                    <span class="icon fa-diamond"></span>
-                    <header>
-                        <h3>Aliquam Nulla</h3>
-                    </header>
-                    <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed.</p>
-                    <ul class="actions">
-                        <li><a href="#" class="button alt">Learn More</a></li>
-                    </ul>
-                </div>
-            </article>
-            <article>
-                <div class="content">
-                    <span class="icon fa-laptop"></span>
-                    <header>
-                        <h3>Sed Magna</h3>
-                    </header>
-                    <p>Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula.</p>
-                    <ul class="actions">
-                        <li><a href="#" class="button alt">Learn More</a></li>
-                    </ul>
-                </div>
-            </article>
-        </div>
-    </section> -->
-
+    
+  
     <!-- Footer -->
     <section id="footer">
-        <!-- <div class="inner">
-            <header>
-                <h2>Get in Touch</h2>
-            </header>
-            <form method="post" action="#">
-                <div class="field half first">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" />
-                </div>
-                <div class="field half">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" id="email" />
-                </div>
-                <div class="field">
-                    <label for="message">Message</label>
-                    <textarea name="message" id="message" rows="6"></textarea>
-                </div>
-                <ul class="actions">
-                    <li><input type="submit" value="Send Message" class="alt" /></li>
-                </ul>
-            </form>
-            <div class="copyright">
-                &copy; Untitled Design: <a href="https://templated.co/">TEMPLATED</a>. Images <a href="https://unsplash.com/">Unsplash</a>
-            </div>
-        </div> -->
     </section>
 
     <!-- Scripts -->

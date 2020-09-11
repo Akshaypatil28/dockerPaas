@@ -1,27 +1,27 @@
 <?php
 if (isset($_POST['save']))// if click on save button
 {
-$f=$_POST["file"]; // here we get file name
-$ext=$_POST["ext"]; // here for extension
-$data=$_POST["output"];// for content
-$file=$f.$ext; // concat file name with extension
-$url = "//localhost/project/";
-$links =$url.$file;
-echo $links;
-$aaa ="pp.php";
-if(file_exists($file)) // check if file exits or not
-{
-	$fo=fopen($file,"w");
-      fwrite($fo,$data);// write data
-      echo " Your Data is Saved !";	// display msg}
-	// if yes display error mssg
-}else
-{
-                    // if no create file 
-      $fo=fopen($file,"w");
-      fwrite($fo,$data);// write data
-      echo " Your Data is Saved !";	// display msg}
-}
+  $f=$_POST["file"]; // here we get file name
+  $ext=$_POST["ext"]; // here for extension
+  $data=$_POST["output"];// for content
+  $file=$f.$ext; // concat file name with extension
+  $url = "//localhost/project/";
+  $links =$url.$file;
+  echo $links;
+  $aaa ="pp.php";
+  if(file_exists($file)) // check if file exits or not
+  {
+    $fo=fopen($file,"w");
+        fwrite($fo,$data);// write data
+        echo " Your Data is Saved !";	// display msg}
+    // if yes display error mssg
+  }else
+  {
+                      // if no create file 
+        $fo=fopen($file,"w");
+        fwrite($fo,$data);// write data
+        echo " Your Data is Saved !";	// display msg}
+  }
 }
 ?>
 
@@ -125,40 +125,6 @@ function text_color(){
       </div>
 </header>
 <form id="form" method="POST"> 
-
-
-<!--
-
-<select name="fname" id="fname"  onchange="font_family();">
-<option value=""> Select Font Famliy</option>
-<option value="Arial"> Arial</option>
-<option value="Times"> Times </option>
-<option value="Times New Roman"> Times New Roman</option>
-<option value="Georgia"> Georgia</option>
-<option value="Verdana"> Verdana</option>
-<option value="Cursive"> Cursive</option>
-<option value="Fantasy"> Fantasy</option>
-<option value="Garamond"> Garamond</option>
-
-</select>
-
-
-<select name="fsize" id="fsize" onchange="font_size();">
-<option value=""> Select  size</option>
-<option value="12"> 12</option>
-<option value="13"> 13 </option>
-<option value="14"> 14 </option>
-<option value="15"> 15 </option>
-<option value="16"> 16 </option>
-<option value="17"> 17 </option>
-<option value="18"> 18 </option>
-
-</select>
-<input type="button" value="B" class="bntB" onclick="bold_text();">
-<input type="button" value="i" class="bnti"  onclick="italic_text();">
-<input type="button" value="u" class="bntu" onclick ="underline_text();">
-<input type="button" value="N" class="bntn" onclick="normal_text();">
-<input type="color" id="color" value="#ff0020" class="bntc"> -->
 <hr>
     <div align="center">
 <textarea name="output" id="output" cols="48" class="textarea"> </textarea>

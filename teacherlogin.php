@@ -1,12 +1,12 @@
 <?php
     session_start();
-    if(isset($_REQUEST['rollno']) and isset($_REQUEST['pass'])){
-        $rollno = $_POST['rollno'];
+    if(isset($_REQUEST['username']) and isset($_REQUEST['pass'])){
+        $username = $_POST['username'];
         $pass = $_POST['pass'];
         
         require './Database Connection/db.php';
 
-        $sql = "SELECT * FROM students WHERE rollno='$rollno' and password='$pass' ";
+        $sql = "SELECT * FROM teachers WHERE username='$username' and password='$pass' ";
         $result = mysqli_query($conn, $sql);
         $num_rows = mysqli_num_rows($result);
 
@@ -19,14 +19,12 @@
         else
         {
             $User = $result->fetch_assoc();
-
-                $_SESSION['rollno'] = $User['rollno'];
-                $_SESSION['fname'] = $User['fname'];
-                $_SESSION['lname'] = $User['lname'];
-                $_SESSION['year'] = $User['year'];
-                $_SESSION['password'] = $User['password'];
-                $_SESSION['isTeacher'] = false;
-                header('location:./index.php');
+            $_SESSION['isTeacher'] = true;
+            $_SESSION['username'] = $User['username'];
+            $_SESSION['fname'] = $User['fname'];
+            $_SESSION['lname'] = $User['lname'];
+            $_SESSION['password'] = $User['password'];
+            header('location:./teacher.php');
            
         }
     }
@@ -37,7 +35,7 @@
 
 <html lang="en">
     <head>
-        <title>DockerPAAS :Student Login</title>
+        <title>DockerPAAS : Teacher Login</title>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -49,15 +47,15 @@
 
     <body class="subpage">
     <center>
-        <h1>Student Login</h1>
+        <h1>Teacher Login</h1>
     </center>
-    <form method="POST" action="./login.php">
+    <form method="POST" action="./teacherlogin.php">
         <section id="post" class="wrapper bg-img" data-bg="banner2.jpg">
             <div class="inner">
                 <div class="box">
                     <div class="row">
                         <div class="col-xs-12">
-                            <input type="text" name="rollno" id="rollno" value="" placeholder="rollno" required/>
+                            <input type="text" name="username" id="username" value="" placeholder="username" required/>
                             <br />
                         </div>
                         <div class="col-xs-12">
@@ -74,6 +72,7 @@
                         </div>
                     <br />
                     <div class="row">
+                        <div class="col-xs-3"></div>
                         <div class="col-xs-3">
                             <a href="SignUp.php" class="button alt">SIGN UP</a>
                         </div>
@@ -84,7 +83,7 @@
                         </div>
                         <div class="col-xs-3">
                             <center>
-                                <a href="./teacherlogin.php" class="btn btn-danger">Login as teacher</a>
+                                <a href="./login.php" class="btn btn-danger">Login as student</a>
                             </center>
                         </div>
                     </div>

@@ -1,14 +1,14 @@
 <?php
 	session_start();
     $_SESSION['message']="";
-	if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) )
+	if(isset($_SESSION['username']) AND isset($_SESSION['password']) )
 	{
-        $userName = $_SESSION['fname']." ".$_SESSION['lname'];
         $prg = $_GET['type'];
+        $rollno = $_SESSION['rollno'];
         require 'Database Connection/db.php';
 		
-		$rollno = $_SESSION['rollno'];
-		$sql = "select name, submissiondate, status, grade from programs where rollno = '$rollno' and name regexp '$prg$'";
+        $rollno = $_SESSION['rollno'];
+        $sql = "select name, submissiondate, status, grade from programs where rollno = '$rollno' and name regexp '$prg$'";
         $result = mysqli_query($conn, $sql);
         $num_rows = mysqli_num_rows($result);
         if($num_rows == 0)
@@ -28,7 +28,7 @@
 <html>
 
     <head>
-        <title>Programs</title>
+        <title>C programs</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
@@ -41,12 +41,10 @@
                 color:black;
             }
         </style>
+
     </head>
     <body>
-
-    <?php 
-        require('header.php');
-    ?>
+        <?php include('./teacherheader.php') ?>
         <table>
             <thead>
                 <tr>
@@ -92,8 +90,8 @@
     </body>
 </html>
 <?php 
-        }
     }
+}
     else
         header('location:./login.php');
 ?>

@@ -1,65 +1,36 @@
 <?php
 session_start();
-if(isset($_POST['save_program'])){
-	$f=$_POST["file"]; // here we get file name
-    $ext=$_POST["ext"]; // here for extension
-    $data=$_POST["output"];// for content
-	$file=$f.'.'.$ext; 
-	$name = $_GET['name'];
-	$date = date('d/m/Y H:i:s');
-	$rollno = $_SESSION['rollno'];
-	$sql = "Update programs Set name = '$file', program='$data', submissiondate='$date',status=3, grade=0 where rollno = '$rollno' and name = '$name'";
-	$result = mysqli_query($conn, $sql);
-	$location = "location:showprograms.php?type=".$ext;
-	echo $location;
-	// header($location);
-}
-if(isset($_POST['submit'])){
-	$grade = $_POST['grade'];
-	$status = $_POST['status'];
-	$name = $_GET['name'];
-	$rollno = $_SESSION['rollno'];
-	$index = strripos($name,".");
-	$ext = substr($name, $index+1); 
-	$name = $_GET['name'];
-	require 'Database Connection/db.php';
-	$sql = "Update programs Set status = '$status', grade='$grade' where rollno = '$rollno' and name = '$name'";
-	$result = mysqli_query($conn, $sql);
-	$location = "location:showprograms.php?type=".$ext;
-	header($location);
-}
-if(isset($_SESSION['rollno']) AND isset($_SESSION['password'])  ){
-    $name = $_GET['name'];
-    require 'Database Connection/db.php';
-    $index = strripos($name,".");
-	$ext = substr($name, $index+1); 
-	$_SESSION['ext']=$ext;
-	$dummy="main.".$ext;
-    $nm = substr($name,0,$index);
-    $rollno = $_SESSION['rollno'];
-    $sql = "select program, submissiondate from programs where rollno = '$rollno' and name = '$name'";
-    $result = mysqli_query($conn, $sql);
-    $num_rows = mysqli_num_rows($result);
-    if($num_rows == 0)
-    {
-        $_SESSION['message']="no programs availble";
-    }
-
-    else
-    {    
-		$row = $result->fetch_assoc();
-		$data = $row['program'];
+if(isset($_SESSION['rollno']) AND isset($_SESSION['password']) ){
+	if (isset($_POST['compile'])){// if click on save button
+		$f=$_POST["file"]; // here we get file name
+		$ext=$_POST["ext"]; // here for extension
+		$data=$_POST["output"];// for content
+		$file=$f.'.'.$ext; // concat file name with extension
+		$url = "//localhost:8080/dockerPaas/";
+		$dummy="main.c";
+		$ans="coutput.php";
+		require 'Database Connection/db.php';
+		$date = date('d/m/Y H:i:s');
+		$rollno = $_SESSION['rollno'];
+		$sql = "Insert into programs Values('$rollno','$file','$data','$date', 3, 0)";
+		$result = mysqli_query($conn, $sql);
+		$links = $url.$ans;
+		$bbb="c.php";
 		if(file_exists($dummy)) // check if file exits or not
 		{
 			$fo=fopen($dummy,"w");
 			fwrite($fo,$data);// write data
+			echo " Your Data is Saved !";	// display msg}
+			// if yes display error mssg
 		}else
 		{
 												// if no create file 
 			$fo=fopen($dummy,"w");
 			fwrite($fo,$data);// write data
+			echo " Your Data is Saved !";	// display msg}
 		}
-    }
+		header('location:c.php');
+	}
 ?>
 
 <html>
@@ -109,8 +80,8 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password'])  ){
 				height: ;
 				left: 0;
 				line-height: inherit;
-				margin-top: 40px;
-				margin-left: 221px;
+					margin-top: 19px;
+					margin-left: 221px;
 				padding: 0;
 				position: absolute;
 				top: 0;
@@ -139,14 +110,11 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password'])  ){
 				font-size: .85em;
 			}
 
-		</style>
-
-	
-	
+		</style>			
 		<script>
 			function load_text(){
-                var prg = document.getElementById("prg").value;
-				document.getElementById("output").value=prg;
+				document.getElementById("output").value="write program here....."
+				
 			}
 			function bold_text(){
 				document.getElementById("output").style.fontWeight="bold";
@@ -195,47 +163,37 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password'])  ){
 							<h1><span class="logo">DockerPAAS</h1>
 						</div>
 						<nav>
-						<ul>
+							<ul>
 							<li><a href="index.php">Home</a></li>
 							<li><a href="about.php">About</a></li>
 							<li><a href="services.php">Services</a></li>
 							<li><a href="myprograms.php">My Programs</a></li>
 							<li><a href="logout.php">Logout</a></li>
-						</ul>
+							</ul>
+						</nav>
 					</div>
 		</header>
-        <textarea name="prg" id="prg" cols="30" rows="10"  hidden><? echo $row['program'] ?></textarea>
-		<form action=<?php echo $ext.".php" ?> method="GET"> 
+		<form id="form" method="POST"> 
+
+
+			
 			<br><br>
 			<div align="center">
 			<textarea name ="output" id="output" cols="50" rows="50" class="textarea"> </textarea>
 			</div>
 			<br>
 			<p align="center">
-				<select name="file">
-					<option value="">Select File Name </option>
-					<option value=<? echo $nm ?> selected><? echo $nm ?></option> 
-				</select>
-				<select name="ext">
-					<option value="">Select Extension </option>
-					<option value=<? echo ".".$ext ?> selected><? echo $ext ?> </option>
-				</select>
-				<input type="submit" class="bnt btn-danger" value="compile and run" name="save">   
-			</p> <br>										
+				<input type="text" name="file" placeholder="filename">
+				<input type="text" name="ext" placeholder="extension">
+				<!-- <input type="submit" class="bnt btn-danger" value="Save" name="save">   
+				<input type="reset" class="bnt btn-danger" value="Clear"> -->
+			</p> <br>
+			<p align="center">
+				
+					<input type="submit" name="compile" value="Compile and run">
+			</p>
+										
 		</form>
-		<?php if($_SESSION['isTeacher']){?>
-			<form method="POST" action=<?php echo "openeditor.php?name=".$_GET['name']?>>
-				<p align="center">
-					<label for="grade"></label>
-					<input type="number" name="grade" id="grade" min=0 max=10>
-					<select name="status" id="fsize" onchange="font_size();">
-						<option value="2"> Accepted </option>
-						<option value="1"> Resubmit </option>
-					</select>
-					<input type="submit" name="submit" value="submit grade">
-				</p>		 
-				</form>
-		<?php }?>
 	</body>
 
 
@@ -243,6 +201,6 @@ if(isset($_SESSION['rollno']) AND isset($_SESSION['password'])  ){
 <?php
 }
 else{
-	header('location: login.php');
+	header('location:login.php');
 }
 ?>

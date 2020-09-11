@@ -1,5 +1,5 @@
 #include<stdio.h>
-
 int main(){
-printf("tested on ther pc");
+printf("demo");
+return 0;
 }
